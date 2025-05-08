@@ -25,6 +25,11 @@
             android:layout_height="wrap_content"
             android:text="Aseguradora"
             android:layout_marginTop="12dp"/>
+        <Button
+            android:id="@+id/btnTratamiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tratamiento" />
 
 
     </LinearLayout>
