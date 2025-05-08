@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etNombreHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Hospital" />
+
+    <EditText
+        android:id="@+id/etDireccionHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección" />
+
+    <EditText
+        android:id="@+id/etTelefonoHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono" />
+
+    <Button
+        android:id="@+id/btnGuardarHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Hospital"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button android:id="@+id/btnClinica" android:text="Clinica" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnEspecialidad" android:text="Especialidad" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnDoctor" android:text="Doctor" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnPaciente" android:text="Paciente" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnConsulta" android:text="Consulta" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnMedicamento" android:text="Medicamento" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnSeguro" android:text="Seguro Médico" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnHospital" android:text="Hospital" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnDetalleFactura" android:text="Detalle Factura" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnFactura" android:text="Factura" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnHospitalizacion" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hospitalización" />
+        <Button
+            android:id="@+id/btnAseguradora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aseguradora"
+            android:layout_marginTop="12dp"/>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+
+    <!-- Campo: Nombre del Medicamento -->
+    <EditText
+        android:id="@+id/edtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del medicamento"
+        android:inputType="textCapWords" />
+
+    <!-- Campo: Descripción -->
+    <EditText
+        android:id="@+id/edtDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:inputType="textMultiLine"
+        android:minLines="3" />
+
+    <!-- Campo: Precio -->
+    <EditText
+        android:id="@+id/edtPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio (ej: 19.99)"
+        android:inputType="numberDecimal" />
+
+    <!-- Campo: Stock -->
+    <EditText
+        android:id="@+id/edtStock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Stock disponible"
+        android:inputType="number" />
+
+    <!-- Campo: Fecha de Vencimiento -->
+    <EditText
+        android:id="@+id/edtFechaVencimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha vencimiento (dd/mm/aaaa)"
+        android:inputType="date" />
+
+    <!-- Botón de Acción -->
+    <Button
+        android:id="@+id/btnGuardarMedicamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Medicamento"
+        android:layout_marginTop="16dp"
+         />
+
+</LinearLayout>

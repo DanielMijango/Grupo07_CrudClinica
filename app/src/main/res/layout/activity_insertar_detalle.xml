@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ID Factura -->
+        <EditText
+            android:id="@+id/edtIdFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Factura"
+            android:inputType="number" />
+
+        <!-- Lista de Medicamentos -->
+        <Spinner
+            android:id="@+id/spinnerMedicamentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
+
+        <!-- Monto del detalle -->
+        <EditText
+            android:id="@+id/edtMontoDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <!-- Forma de Pago -->
+        <EditText
+            android:id="@+id/edtFormaPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Forma de Pago"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Botón -->
+        <Button
+            android:id="@+id/btnAgregarDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar Detalle"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

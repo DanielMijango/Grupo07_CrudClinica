@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtIdActualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID Clínica a actualizar"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtNuevoNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nuevo nombre" />
+
+    <EditText
+        android:id="@+id/edtNuevaDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nueva dirección" />
+
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

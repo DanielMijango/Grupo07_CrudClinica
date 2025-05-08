@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Grupo07_CrudCinica"
+        tools:targetApi="31">
+        <activity
+            android:name=".Hospital.EliminarHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital.ActualizarHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital.ConsultarHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital.InsertarHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital.MenuHospitalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital"
+            android:exported="false" />
+        <activity
+            android:name=".Aseguradora.AseguradoraMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Aseguradora.EliminarAseguradoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Aseguradora.ActualizarAseguradoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Aseguradora.ConsultarAseguradoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Aseguradora.InsertarAseguradoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hospitalizacion.ActualizarHospitalizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hospitalizacion.ConsultarHospitalizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hospitalizacion.EliminarHospitalizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hospitalizacion.InsertarHospitalizacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".hospitalizacion.hospitalizacionMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Paciente.EliminarPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Paciente.ActualizarPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Paciente.ConsultarPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Paciente.InsertarPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Paciente.MenuPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.DoctorMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.EliminarDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.ActualizarDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.ConsultarDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Doctor.InsertarDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Especialidad.ActualizarEspecialidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Especialidad.EliminarEspecialidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Especialidad.EspecialidadMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Especialidad.ConsultarEspecialidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Especialidad.InsertarEspecialidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleFactura.EliminarDetalle"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleFactura.ConsultarDetalle"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleFactura.ActualizarDetalle"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleFactura.InsertarDetalle"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleFactura.DetalleFacturaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.ConsultarMedicamento"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.EliminarMedicamento"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.ActualizarMedicamento"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.InsertarMedicamento"
+            android:exported="false" />
+        <activity
+            android:name=".Medicamento.MedicamentoMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Clinica.EliminarClinicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Clinica.ActualizarClinicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Clinica.ConsultarClinicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Clinica.InsertarClinicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Clinica.ClinicaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConsultaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tratamiento"
+            android:exported="false" />
+        <activity
+            android:name=".Hospitalizacion"
+            android:exported="false" />
+        <activity
+            android:name=".PacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EspecialidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClinicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Grupo07_CrudCinica">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

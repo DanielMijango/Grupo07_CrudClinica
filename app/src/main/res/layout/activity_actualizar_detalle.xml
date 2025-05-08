@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- ListView para mostrar los detalles de las facturas con los medicamentos -->
+    <ListView
+        android:id="@+id/listViewDetalles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
+
+    <EditText
+        android:id="@+id/edtIdDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID Detalle"
+        android:inputType="text"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/edtMontoDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad"
+        android:inputType="number"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/edtFormaPago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nueva forma de pago"
+        android:inputType="text"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Spinner para seleccionar medicamento -->
+    <Spinner
+        android:id="@+id/spinnerMedicamentos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnActualizarDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Cambios" />
+</LinearLayout>

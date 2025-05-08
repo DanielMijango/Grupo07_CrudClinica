@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnInsertarClinica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insertar Clínica" />
+
+    <Button
+        android:id="@+id/btnConsultarClinica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consultar Clínica"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnActualizarClinica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Clínica"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnEliminarClinica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Clínica"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione ID de Especialidad a actualizar"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spinnerIdsActualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtNombreActual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre actual:"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/edtNuevoNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nuevo nombre"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_marginTop="10dp" />
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/spinnerIdEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewNombreEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:paddingTop="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewApellidoEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apellido" />
+
+    <Button
+        android:id="@+id/btnEliminarDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="Eliminar Doctor" />
+</LinearLayout>

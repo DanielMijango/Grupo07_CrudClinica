@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etNombreDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Doctor" />
+
+    <EditText
+        android:id="@+id/etApellidoDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apellido del Doctor" />
+
+    <TextView
+        android:id="@+id/tvEspecialidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ESPECIALIDAD"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerEspecialidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:id="@+id/btnGuardarDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Doctor"
+        android:layout_marginTop="24dp" />
+</LinearLayout>
