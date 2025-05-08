@@ -108,6 +108,11 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
                 "FORMA_DE_PAGO TEXT)");
 
 
+        db.execSQL("CREATE TABLE TRATAMIENTO (" +
+                "ID_TRATAMIENTO CHAR(4) PRIMARY KEY, " +
+                "ID_CONSULTA CHAR(4), " +
+                "FECHA_TRATAMIENTO TEXT, " +
+                "DESCRIPCION VARCHAR(100));");
 
         db.execSQL("CREATE TABLE HOSPITAL (" +
                 "id_hospital INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -139,6 +144,8 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS MEDICAMENTO");
         db.execSQL("DROP TABLE IF EXISTS MEDICAMENTO_DETALLE");
         db.execSQL("DROP TABLE IF EXISTS DETALLE_FACTURA");
+        db.execSQL("DROP TABLE IF EXISTS TRATAMIENTO;");
+        db.execSQL("DROP TABLE IF EXISTS TRATAMIENTO;");
 
         onCreate(db);
     }
@@ -603,7 +610,52 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         return db.delete("ASEGURADORA", "ID_ASEGURADORA = ?", new String[]{idAseguradora}) > 0;
     }
 
+    // ------------------------- tratamiento crud -------------------------
 
+    public long insertarTratamiento(String idConsulta, String fechaTratamiento, String descripcion) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ID_TRATAMIENTO", generarId("TRA"));
+        values.put("ID_CONSULTA", idConsulta);
+        values.put("FECHA_TRATAMIENTO", fechaTratamiento);
+        values.put("DESCRIPCION", descripcion);
+        return db.insert("TRATAMIENTO", null, values);
+    }
+
+    public Cursor consultarTratamientos() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM TRATAMIENTO", null);
+    }
+
+    public Cursor obtenerTratamientoPorId(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM TRATAMIENTO WHERE ID_TRATAMIENTO = ?", new String[]{id});
+    }
+
+    public boolean actualizarTratamiento(String id, String idConsulta, String fecha, String descripcion) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ID_CONSULTA", idConsulta);
+        values.put("FECHA_TRATAMIENTO", fecha);
+        values.put("DESCRIPCION", descripcion);
+        return db.update("TRATAMIENTO", values, "ID_TRATAMIENTO = ?", new String[]{id}) > 0;
+    }
+
+    public boolean eliminarTratamiento(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("TRATAMIENTO", "ID_TRATAMIENTO = ?", new String[]{id}) > 0;
+    }
+
+    public List<String> obtenerIdsTratamientos() {
+        List<String> ids = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID_TRATAMIENTO FROM TRATAMIENTO", null);
+        while (cursor.moveToNext()) {
+            ids.add(cursor.getString(0));
+        }
+        cursor.close();
+        return ids;
+    }
 
 
 
