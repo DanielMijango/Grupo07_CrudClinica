@@ -15,7 +15,6 @@
         <Button android:id="@+id/btnPaciente" android:text="Paciente" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <Button android:id="@+id/btnConsulta" android:text="Consulta" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <Button android:id="@+id/btnMedicamento" android:text="Medicamento" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <Button android:id="@+id/btnSeguro" android:text="Seguro Médico" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <Button android:id="@+id/btnHospital" android:text="Hospital" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <Button android:id="@+id/btnDetalleFactura" android:text="Detalle Factura" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <Button android:id="@+id/btnFactura" android:text="Factura" android:layout_width="match_parent" android:layout_height="wrap_content"/>

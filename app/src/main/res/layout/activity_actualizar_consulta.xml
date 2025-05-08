@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ID de la consulta (campo clave para buscar y actualizar) -->
+        <EditText
+            android:id="@+id/edtIdConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID de la Consulta"
+            android:maxLength="4"
+            android:inputType="text"/>
+
+        <!-- ID de la factura -->
+        <EditText
+            android:id="@+id/edtIdFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Factura"
+            android:maxLength="4"
+            android:inputType="text"/>
+
+        <!-- ID del doctor -->
+        <EditText
+            android:id="@+id/edtIdDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Doctor"
+            android:maxLength="4"
+            android:inputType="text"/>
+
+        <!-- ID del paciente -->
+        <EditText
+            android:id="@+id/edtIdPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Paciente"
+            android:maxLength="4"
+            android:inputType="text"/>
+
+        <!-- Fecha de la consulta -->
+        <EditText
+            android:id="@+id/edtFechaConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha Consulta (YYYY-MM-DD)"
+            android:inputType="date" />
+
+        <!-- Emergencia -->
+        <EditText
+            android:id="@+id/edtEmergencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Emergencia"
+            android:inputType="text" />
+
+        <!-- Cuota -->
+        <EditText
+            android:id="@+id/edtCuota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cuota"
+            android:inputType="numberDecimal" />
+
+        <!-- Diagnóstico -->
+        <EditText
+            android:id="@+id/edtDiagnostico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Diagnóstico"
+            android:inputType="text" />
+
+        <!-- Botón para actualizar -->
+        <Button
+            android:id="@+id/btnActualizarConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Consulta"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

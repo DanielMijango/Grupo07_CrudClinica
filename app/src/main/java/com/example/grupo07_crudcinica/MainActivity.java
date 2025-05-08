@@ -7,10 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.widget.Button;
 
-import com.example.grupo07_crudcinica.databinding.ActivityHospitalizacionMenuBinding;
-
 public class MainActivity extends AppCompatActivity {
-    Button btnClinica, btnEspecialidad, btnDoctor, btnPaciente, btnConsulta, btnFactura, btnMedicamento, btnSeguro, btnHospital, btnDetalleFactura, btnHospitalizacion, btnAseguradora;
+    Button btnClinica, btnEspecialidad, btnDoctor, btnPaciente, btnConsulta, btnFactura, btnMedicamento, btnHospital, btnDetalleFactura, btnHospitalizacion, btnAseguradora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         btnConsulta = findViewById(R.id.btnConsulta);
         btnFactura = findViewById(R.id.btnFactura);
         btnMedicamento = findViewById(R.id.btnMedicamento);
-        btnSeguro = findViewById(R.id.btnSeguro);
         btnHospital = findViewById(R.id.btnHospital);
         btnDetalleFactura = findViewById(R.id.btnDetalleFactura);
         btnHospitalizacion = findViewById(R.id.btnHospitalizacion);
@@ -40,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnAseguradora = findViewById(R.id.btnAseguradora);
         btnAseguradora.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Aseguradora.AseguradoraMenuActivity.class)));
         btnHospital.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Hospital.MenuHospitalActivity.class)));
+        btnConsulta.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Consulta.ConsultaMenuActivity.class)));
 
         // Los demás aún no están implementados, los agregaremos después
     }

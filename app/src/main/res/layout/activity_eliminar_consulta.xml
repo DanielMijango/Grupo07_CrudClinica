@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para ingresar el ID de la consulta a eliminar -->
+    <EditText
+        android:id="@+id/edtIdConsultaEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID de la Consulta a Eliminar"
+        android:maxLength="4"
+        android:inputType="text"/>
+
+    <!-- Botón para eliminar -->
+    <Button
+        android:id="@+id/btnEliminarConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Consulta"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

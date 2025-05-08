@@ -96,9 +96,12 @@ public class InsertarDetalle extends AppCompatActivity {
             return;
         }
 
+
+
         try {
             double monto = Double.parseDouble(montoStr);
             String idMedicamento = medicamentoMap.get(nombreMedicamento); // Asegúrate de tener este mapa
+
 
             // Insertar el detalle, pero el ID generado es un String con prefijo "DET"
             String idDetalle = dbHelper.insertarDetalleFactura(idFactura, monto, formaPago);
@@ -121,6 +124,7 @@ public class InsertarDetalle extends AppCompatActivity {
             edtMontoDetalle.setError("Monto inválido");
             e.printStackTrace();
         }
+
     }
 
 
