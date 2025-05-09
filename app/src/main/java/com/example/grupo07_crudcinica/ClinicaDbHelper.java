@@ -128,6 +128,12 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
                 "FECHA_SALIDA TEXT," +
                 "FOREIGN KEY(ID_PACIENTE) REFERENCES PACIENTE(ID_PACIENTE));");
 
+        db.execSQL("CREATE TABLE FACTURA (" +
+                "ID_FACTURA CHAR(4) PRIMARY KEY," +
+                "ID_CONSULTA CHAR(4)," +
+                "FECHA_FACTURA DATE" +
+                ");");
+
         cargarDatosDesdeJSON(db);
     }
 
@@ -145,7 +151,7 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS MEDICAMENTO_DETALLE");
         db.execSQL("DROP TABLE IF EXISTS DETALLE_FACTURA");
         db.execSQL("DROP TABLE IF EXISTS TRATAMIENTO;");
-        db.execSQL("DROP TABLE IF EXISTS TRATAMIENTO;");
+        db.execSQL("DROP TABLE IF EXISTS FACTURA;");
 
         onCreate(db);
     }
@@ -269,8 +275,150 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
     private String generarId(String prefijo) {
         return prefijo + String.format("%03d", (int) (Math.random() * 1000));
     }
+    //-------------------------------------- CRUD FACTURA ------------------------------------
+    public boolean insertarFactura(String idFactura, String idConsulta, String fechaFactura) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
+        values.put("ID_FACTURA", generarId("FAC"));
+        values.put("ID_CONSULTA", idConsulta);
+        values.put("FECHA_FACTURA", fechaFactura); // Asegúrate de que sea un string en formato "yyyy-MM-dd"
 
+        long resultado = db.insert("FACTURA", null, values);
+
+        return resultado != -1; // true si se insertó correctamente
+    }
+    public List<String> consultarFacturasConDetallesPorFecha(String fecha) {
+        List<String> resultados = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Consulta todas las facturas con la fecha proporcionada
+        String queryFactura = "SELECT ID_FACTURA, FECHA_FACTURA FROM FACTURA WHERE FECHA_FACTURA = ?";
+        Cursor cursorFactura = db.rawQuery(queryFactura, new String[]{fecha});
+
+        if (cursorFactura.moveToFirst()) {
+            do {
+                String idFactura = cursorFactura.getString(cursorFactura.getColumnIndex("ID_FACTURA"));
+                String fechaFactura = cursorFactura.getString(cursorFactura.getColumnIndex("FECHA_FACTURA"));
+                StringBuilder facturaInfo = new StringBuilder();
+                facturaInfo.append("ID Factura: ").append(idFactura)
+                        .append("\nFecha: ").append(fechaFactura);
+
+                // Consulta detalles relacionados con la factura actual
+                String queryDetalle = "SELECT ID_DETALLE, MONTO_DETALLE, FORMA_DE_PAGO FROM DETALLE_FACTURA WHERE ID_FACTURA = ?";
+                Cursor cursorDetalle = db.rawQuery(queryDetalle, new String[]{idFactura});
+
+                if (cursorDetalle.moveToFirst()) {
+                    do {
+                        String idDetalle = cursorDetalle.getString(cursorDetalle.getColumnIndex("ID_DETALLE"));
+                        double monto = cursorDetalle.getDouble(cursorDetalle.getColumnIndex("MONTO_DETALLE"));
+                        String formaPago = cursorDetalle.getString(cursorDetalle.getColumnIndex("FORMA_DE_PAGO"));
+                        facturaInfo.append("\n  - Detalle: ").append(idDetalle)
+                                .append(", Monto: ").append(monto)
+                                .append(", Pago: ").append(formaPago);
+                    } while (cursorDetalle.moveToNext());
+                } else {
+                    facturaInfo.append("\n  - Sin detalles asociados.");
+                }
+
+                cursorDetalle.close();
+                resultados.add(facturaInfo.toString());
+
+            } while (cursorFactura.moveToNext());
+        }
+
+        cursorFactura.close();
+        db.close();
+
+        return resultados;
+    }
+
+    public boolean eliminarFacturaYDetalles(String idFactura) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+
+        try {
+            // Eliminar los detalles asociados
+            db.delete("DETALLE_FACTURA", "ID_FACTURA = ?", new String[]{idFactura});
+
+            // Eliminar la factura
+            int filasAfectadas = db.delete("FACTURA", "ID_FACTURA = ?", new String[]{idFactura});
+
+            db.setTransactionSuccessful();
+            return filasAfectadas > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+    public List<String> consultarFacturasYDetallesPorFecha(String fecha) {
+        List<String> resultados = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorFacturas = db.rawQuery(
+                "SELECT * FROM FACTURA WHERE FECHA_FACTURA = ?", new String[]{fecha});
+
+        if (cursorFacturas.moveToFirst()) {
+            do {
+                // Datos de la factura
+                String idFactura = cursorFacturas.getString(cursorFacturas.getColumnIndexOrThrow("ID_FACTURA"));
+                String idConsulta = cursorFacturas.getString(cursorFacturas.getColumnIndexOrThrow("ID_CONSULTA"));
+                String fechaFactura = cursorFacturas.getString(cursorFacturas.getColumnIndexOrThrow("FECHA_FACTURA"));
+
+                resultados.add("Factura ID: " + idFactura +
+                        " | ID Consulta: " + idConsulta +
+                        " | Fecha: " + fechaFactura);
+
+                // Buscar detalles para esta factura
+                Cursor cursorDetalles = db.rawQuery(
+                        "SELECT * FROM DETALLE_FACTURA WHERE ID_FACTURA = ?", new String[]{idFactura});
+
+                if (cursorDetalles.moveToFirst()) {
+                    do {
+                        String idDetalle = cursorDetalles.getString(cursorDetalles.getColumnIndexOrThrow("ID_DETALLE"));
+                        double monto = cursorDetalles.getDouble(cursorDetalles.getColumnIndexOrThrow("MONTO_DETALLE"));
+                        String formaPago = cursorDetalles.getString(cursorDetalles.getColumnIndexOrThrow("FORMA_DE_PAGO"));
+
+                        resultados.add("   → Detalle ID: " + idDetalle +
+                                " | Monto: $" + monto +
+                                " | Pago: " + formaPago);
+                    } while (cursorDetalles.moveToNext());
+                } else {
+                    resultados.add("   → No hay detalles para esta factura.");
+                }
+
+                cursorDetalles.close();
+
+            } while (cursorFacturas.moveToNext());
+        }
+
+        cursorFacturas.close();
+        db.close();
+        return resultados;
+    }
+    public boolean actualizarFechaFactura(String idFactura, String nuevaFecha) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Preparar la sentencia SQL
+        ContentValues values = new ContentValues();
+        values.put("FECHA_FACTURA", nuevaFecha);
+
+        // Condición para encontrar la factura por ID
+        String selection = "ID_FACTURA = ?";
+        String[] selectionArgs = {idFactura};
+
+        // Ejecutar la actualización
+        int rowsAffected = db.update("FACTURA", values, selection, selectionArgs);
+
+        // Si se actualizó al menos una fila, devolvemos verdadero
+        return rowsAffected > 0;
+    }
     //-------------------------------------- CRUD MEDICAMENTO --------------------------------
     public long insertarMedicamento(String nombre, String fechaVencimiento, double precio) {
         SQLiteDatabase db = this.getWritableDatabase();

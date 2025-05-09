@@ -9,29 +9,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- ID Factura (para buscar y actualizar) -->
+        <!-- ID Factura (para identificar la factura a actualizar) -->
         <EditText
             android:id="@+id/edtIdFactura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID Factura"
-            android:maxLength="4"
+            android:maxLength="10"
             android:inputType="text"
             android:importantForAutofill="no" />
 
-        <!-- ID Consulta -->
+        <!-- Nueva Fecha Factura -->
         <EditText
-            android:id="@+id/edtIdConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nuevo ID Consulta"
-            android:maxLength="4"
-            android:inputType="text"
-            android:layout_marginTop="8dp" />
-
-        <!-- Fecha Factura -->
-        <EditText
-            android:id="@+id/edtFechaFactura"
+            android:id="@+id/edtNuevaFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nueva Fecha (YYYY-MM-DD)"
@@ -40,11 +30,10 @@
 
         <!-- Botón Actualizar -->
         <Button
-            android:id="@+id/btnActualizarFactura"
+            android:id="@+id/btnActualizarFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Actualizar Factura"
+            android:text="Actualizar Fecha"
             android:layout_marginTop="16dp" />
-
     </LinearLayout>
 </ScrollView>

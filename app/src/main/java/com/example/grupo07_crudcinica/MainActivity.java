@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         btnAseguradora.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Aseguradora.AseguradoraMenuActivity.class)));
         btnHospital.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Hospital.MenuHospitalActivity.class)));
         btnConsulta.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Consulta.ConsultaMenuActivity.class)));
+        btnFactura.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Factura.FacturaMenuActivity.class)));
+
 
 
         btnTratamiento = findViewById(R.id.btnTratamiento);btnTratamiento.setOnClickListener(v -> startActivity(new Intent(this, com.example.grupo07_crudcinica.Tratamiento.MenuTratamientoActivity.class)));
