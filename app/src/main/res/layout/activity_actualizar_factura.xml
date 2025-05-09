@@ -1,39 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <TextView android:text="Seleccione ID de la Factura:" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinnerFacturaActualizar" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/edtFechaActualizarFactura" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nueva fecha" android:focusable="false"/>
+        <Button android:id="@+id/btnActualizarFactura" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Actualizar Factura"/>
 
-        <!-- ID Factura (para identificar la factura a actualizar) -->
-        <EditText
-            android:id="@+id/edtIdFactura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Factura"
-            android:maxLength="10"
-            android:inputType="text"
-            android:importantForAutofill="no" />
-
-        <!-- Nueva Fecha Factura -->
-        <EditText
-            android:id="@+id/edtNuevaFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nueva Fecha (YYYY-MM-DD)"
-            android:inputType="date"
-            android:layout_marginTop="8dp" />
-
-        <!-- Botón Actualizar -->
-        <Button
-            android:id="@+id/btnActualizarFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Actualizar Fecha"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ClinicaDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clinica.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     private final Context context;
 
     public ClinicaDbHelper(Context context) {
@@ -127,6 +127,20 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
                 "FECHA_ALTA TEXT, " +
                 "FECHA_SALIDA TEXT," +
                 "FOREIGN KEY(ID_PACIENTE) REFERENCES PACIENTE(ID_PACIENTE));");
+
+        db.execSQL("CREATE TABLE CONSULTA (" +
+                "ID_CONSULTA CHAR(4) PRIMARY KEY, " +
+                "ID_FACTURA CHAR(4), " +
+                "ID_DOCTOR CHAR(4), " +
+                "ID_PACIENTE CHAR(4), " +
+                "FECHA_CONSULTA TEXT, " +
+                "EMERGENCIA VARCHAR(100), " +
+                "CUOTA REAL, " +
+                "DIAGNOSTICO VARCHAR(100), " +
+                "FOREIGN KEY (ID_DOCTOR) REFERENCES DOCTOR(ID_DOCTOR), " +
+                "FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTE(ID_PACIENTE), " +
+                "FOREIGN KEY (ID_FACTURA) REFERENCES FACTURA(ID_FACTURA));");
+
 
         db.execSQL("CREATE TABLE FACTURA (" +
                 "ID_FACTURA CHAR(4) PRIMARY KEY," +
@@ -276,6 +290,23 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         return prefijo + String.format("%03d", (int) (Math.random() * 1000));
     }
     //-------------------------------------- CRUD FACTURA ------------------------------------
+
+
+    public List<String> consultarIds(String tabla, String columna) {
+        List<String> ids = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + columna + " FROM " + tabla, null);
+        if (cursor.moveToFirst()) {
+            do {
+                ids.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return ids;
+    }
+
+
+
     public boolean insertarFactura(String idFactura, String idConsulta, String fechaFactura) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -805,7 +836,53 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         return ids;
     }
 
+// ------------------------- crud consulta el mas paloma -------------------------
 
+    public long insertarConsulta(String idDoctor, String idPaciente, String fechaConsulta, String emergencia, double cuota, String diagnostico) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ID_CONSULTA", generarId("CON"));
+        values.put("ID_DOCTOR", idDoctor);
+        values.put("ID_PACIENTE", idPaciente);
+        values.put("FECHA_CONSULTA", fechaConsulta);
+        values.put("EMERGENCIA", emergencia);
+        values.put("CUOTA", cuota);
+        values.put("DIAGNOSTICO", diagnostico);
+        return db.insert("CONSULTA", null, values);
+    }
+
+    public Cursor obtenerConsultaPorId(String idConsulta) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM CONSULTA WHERE ID_CONSULTA = ?", new String[]{idConsulta});
+    }
+
+    public boolean actualizarConsulta(String idConsulta, String idDoctor, String idPaciente, String fechaConsulta, String emergencia, double cuota, String diagnostico) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("ID_DOCTOR", idDoctor);
+        values.put("ID_PACIENTE", idPaciente);
+        values.put("FECHA_CONSULTA", fechaConsulta);
+        values.put("EMERGENCIA", emergencia);
+        values.put("CUOTA", cuota);
+        values.put("DIAGNOSTICO", diagnostico);
+        return db.update("CONSULTA", values, "ID_CONSULTA = ?", new String[]{idConsulta}) > 0;
+    }
+
+    public boolean eliminarConsulta(String idConsulta) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("CONSULTA", "ID_CONSULTA = ?", new String[]{idConsulta}) > 0;
+    }
+
+    public List<String> obtenerIdsConsultas() {
+        List<String> ids = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID_CONSULTA FROM CONSULTA", null);
+        while (cursor.moveToNext()) {
+            ids.add(cursor.getString(0));
+        }
+        cursor.close();
+        return ids;
+    }
 
     // ------------------------- Cargar ubicaciones desde JSON -------------------------
     private void cargarDatosDesdeJSON(SQLiteDatabase db) {

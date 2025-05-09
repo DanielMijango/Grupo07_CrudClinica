@@ -1,5 +1,6 @@
 package com.example.grupo07_crudcinica.Factura;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -22,46 +23,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.grupo07_crudcinica.ClinicaDbHelper;
 import com.example.grupo07_crudcinica.R;
 
+import android.os.Bundle;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.grupo07_crudcinica.ClinicaDbHelper;
+import com.example.grupo07_crudcinica.R;
+
 public class EliminarFacturaActivity extends AppCompatActivity {
 
-    private EditText edtFacturaIDEliminar;
-    private Button btnEliminarFactura;
-    private TextView txtEliminarResultado;
-    private ClinicaDbHelper dbHelper;
+    Spinner spinnerFacturaEliminar;
+    Button btnEliminar;
+    ClinicaDbHelper dbHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eliminar_factura);
 
-        // Inicialización de la base de datos
+        spinnerFacturaEliminar = findViewById(R.id.spinnerEliminarFactura);
+        btnEliminar = findViewById(R.id.btnEliminarFactura);
         dbHelper = new ClinicaDbHelper(this);
 
-        // Referencias a los elementos de la interfaz
-        edtFacturaIDEliminar = findViewById(R.id.edtFacturaIDEliminar);
-        btnEliminarFactura = findViewById(R.id.btnEliminarFactura);
-        txtEliminarResultado = findViewById(R.id.txtEliminarResultado);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                dbHelper.consultarIds("FACTURA", "ID_FACTURA"));
+        spinnerFacturaEliminar.setAdapter(adapter);
 
-        // Configuramos el botón para eliminar la factura
-        btnEliminarFactura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String idFactura = edtFacturaIDEliminar.getText().toString().trim();
-
-                // Verificar que el ID no esté vacío
-                if (idFactura.isEmpty()) {
-                    Toast.makeText(EliminarFacturaActivity.this, "Por favor ingrese el ID de la factura", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Llamar al método para eliminar la factura y sus detalles
-                    boolean eliminado = dbHelper.eliminarFacturaYDetalles(idFactura);
-
-                    if (eliminado) {
-                        txtEliminarResultado.setText("Factura y detalles eliminados correctamente.");
-                    } else {
-                        txtEliminarResultado.setText("No se encontró la factura o no se pudo eliminar.");
-                    }
-                }
-            }
+        btnEliminar.setOnClickListener(v -> {
+            String id = spinnerFacturaEliminar.getSelectedItem().toString();
+            boolean eliminado = dbHelper.eliminarFacturaYDetalles(id);
+            Toast.makeText(this, eliminado ? "Factura eliminada" : "Error al eliminar", Toast.LENGTH_SHORT).show();
         });
     }
 }

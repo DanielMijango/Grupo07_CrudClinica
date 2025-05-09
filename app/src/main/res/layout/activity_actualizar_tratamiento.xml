@@ -1,36 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinnerIdTratamiento"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtConsultaActualizar"
-        android:hint="Nuevo ID Consulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Spinner para seleccionar el tratamiento -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona ID de Tratamiento"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/edtFechaActualizar"
-        android:hint="Nueva Fecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <Spinner
+            android:id="@+id/spinnerTratamientos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/edtDescripcionActualizar"
-        android:hint="Nueva Descripción"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Spinner para seleccionar el ID de consulta relacionado -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona ID de Consulta"
+            android:layout_marginTop="8dp"/>
 
-    <Button
-        android:id="@+id/btnActualizarTratamiento"
-        android:text="Actualizar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spinnerConsultas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Campo para seleccionar la fecha del tratamiento -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha del Tratamiento"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/edtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seleccionar fecha"
+            android:focusable="false"
+            android:inputType="none"/>
+
+        <!-- Campo para la descripción -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/edtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese descripción"/>
+
+        <!-- Botón para actualizar -->
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

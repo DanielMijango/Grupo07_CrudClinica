@@ -1,59 +1,62 @@
 package com.example.grupo07_crudcinica.Tratamiento;
 
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.grupo07_crudcinica.R;
-
+import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.grupo07_crudcinica.ClinicaDbHelper;
 import com.example.grupo07_crudcinica.R;
-import android.database.Cursor;
+
+import java.util.List;
 
 public class ConsultarTratamientoActivity extends AppCompatActivity {
 
-    Spinner spinnerIdTratamiento;
-    TextView txtResultado;
-    ClinicaDbHelper db;
+    Spinner spinnerTratamientos;
+    TextView txtIdConsulta, txtFecha, txtDescripcion;
+    ClinicaDbHelper dbHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_tratamiento);
 
-        spinnerIdTratamiento = findViewById(R.id.spinnerIdTratamiento);
-        txtResultado = findViewById(R.id.txtResultadoTratamiento);
-        db = new ClinicaDbHelper(this);
+        spinnerTratamientos = findViewById(R.id.spinnerTratamientos);
+        txtIdConsulta = findViewById(R.id.txtIdConsulta);
+        txtFecha = findViewById(R.id.txtFecha);
+        txtDescripcion = findViewById(R.id.txtDescripcion);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, db.obtenerIdsTratamientos());
-        spinnerIdTratamiento.setAdapter(adapter);
+        dbHelper = new ClinicaDbHelper(this);
+        cargarSpinnerTratamientos();
+    }
 
-        spinnerIdTratamiento.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+    private void cargarSpinnerTratamientos() {
+        List<String> ids = dbHelper.obtenerIdsTratamientos();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ids);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTratamientos.setAdapter(adapter);
+
+        spinnerTratamientos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, android.view.View view, int position, long id) {
-                String selectedId = parent.getItemAtPosition(position).toString();
-                Cursor cursor = db.obtenerTratamientoPorId(selectedId);
-                if (cursor.moveToFirst()) {
-                    String info = "ID: " + cursor.getString(0) + "\n" +
-                            "Consulta: " + cursor.getString(1) + "\n" +
-                            "Fecha: " + cursor.getString(2) + "\n" +
-                            "Descripción: " + cursor.getString(3);
-                    txtResultado.setText(info);
+            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
+                String idTratamiento = parent.getItemAtPosition(position).toString();
+                Cursor cursor = dbHelper.obtenerTratamientoPorId(idTratamiento);
+                if (cursor != null && cursor.moveToFirst()) {
+                    txtIdConsulta.setText(cursor.getString(cursor.getColumnIndexOrThrow("ID_CONSULTA")));
+                    txtFecha.setText(cursor.getString(cursor.getColumnIndexOrThrow("FECHA_TRATAMIENTO")));
+                    txtDescripcion.setText(cursor.getString(cursor.getColumnIndexOrThrow("DESCRIPCION")));
+                    cursor.close();
                 }
-                cursor.close();
             }
 
             @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 }

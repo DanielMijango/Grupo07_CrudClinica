@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinnerIdTratamiento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/txtResultadoTratamiento"
-        android:text="Detalles del tratamiento..."
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <TextView
+            android:text="Selecciona ID de Tratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerTratamientos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:text="ID Consulta:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txtIdConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="8dp" />
+
+        <TextView
+            android:text="Fecha Tratamiento:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/txtFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="8dp" />
+
+        <TextView
+            android:text="Descripción:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EFEFEF"
+            android:padding="8dp" />
+    </LinearLayout>
+</ScrollView>

@@ -24,6 +24,15 @@
         android:layout_height="wrap_content"
         android:hint="DUI" />
 
+    <TextView
+        android:id="@+id/tvSeleccionarAseguradora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar aseguradora"
+        android:textStyle="bold"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp" />
+
     <Spinner
         android:id="@+id/spinnerAseguradoraPaciente"
         android:layout_width="match_parent"

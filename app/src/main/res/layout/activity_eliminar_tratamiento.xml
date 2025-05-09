@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:text="Selecciona ID Tratamiento a eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Spinner
-        android:id="@+id/spinnerEliminarTratamiento"
+        android:id="@+id/spinnerTratamientos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnEliminarTratamiento"
-        android:text="Eliminar"
+        android:id="@+id/btnEliminar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:layout_marginTop="24dp"/>
 </LinearLayout>

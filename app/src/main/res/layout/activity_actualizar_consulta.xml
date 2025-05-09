@@ -9,81 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- ID de la consulta (campo clave para buscar y actualizar) -->
-        <EditText
-            android:id="@+id/edtIdConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID de la Consulta"
-            android:maxLength="4"
-            android:inputType="text"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seleccione ID de la Consulta:" />
+        <Spinner android:id="@+id/spinnerConsultaId" android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <!-- ID de la factura -->
-        <EditText
-            android:id="@+id/edtIdFactura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Factura"
-            android:maxLength="4"
-            android:inputType="text"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seleccione Doctor:" />
+        <Spinner android:id="@+id/spinnerDoctorUpd" android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <!-- ID del doctor -->
-        <EditText
-            android:id="@+id/edtIdDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Doctor"
-            android:maxLength="4"
-            android:inputType="text"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Seleccione Paciente:" />
+        <Spinner android:id="@+id/spinnerPacienteUpd" android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <!-- ID del paciente -->
-        <EditText
-            android:id="@+id/edtIdPaciente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Paciente"
-            android:maxLength="4"
-            android:inputType="text"/>
+        <EditText android:id="@+id/edtFechaConsultaUpd" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Fecha de consulta" android:focusable="false" />
+        <EditText android:id="@+id/edtEmergenciaUpd" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Emergencia" />
+        <EditText android:id="@+id/edtCuotaUpd" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Cuota" android:inputType="numberDecimal" />
+        <EditText android:id="@+id/edtDiagnosticoUpd" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Diagnóstico" />
 
-        <!-- Fecha de la consulta -->
-        <EditText
-            android:id="@+id/edtFechaConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Fecha Consulta (YYYY-MM-DD)"
-            android:inputType="date" />
-
-        <!-- Emergencia -->
-        <EditText
-            android:id="@+id/edtEmergencia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Emergencia"
-            android:inputType="text" />
-
-        <!-- Cuota -->
-        <EditText
-            android:id="@+id/edtCuota"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Cuota"
-            android:inputType="numberDecimal" />
-
-        <!-- Diagnóstico -->
-        <EditText
-            android:id="@+id/edtDiagnostico"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Diagnóstico"
-            android:inputType="text" />
-
-        <!-- Botón para actualizar -->
-        <Button
-            android:id="@+id/btnActualizarConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Actualizar Consulta"
-            android:layout_marginTop="16dp"/>
-
+        <Button android:id="@+id/btnActualizarConsulta" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Actualizar Consulta" />
     </LinearLayout>
 </ScrollView>

@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <!-- ID Consulta -->
-        <EditText
-            android:id="@+id/edtIdConsulta"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="ID Consulta"
-            android:inputType="text"
-            android:layout_marginTop="8dp" />
+            android:text="Seleccione ID de Consulta:" />
 
-        <!-- Fecha Factura -->
+        <Spinner
+            android:id="@+id/spinnerConsultaFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID Detalle factura:" />
+
+        <Spinner
+            android:id="@+id/spinnerDetalleFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/edtFechaFactura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de Factura (dd/mm/aaaa)"
+            android:hint="Fecha de factura"
+            android:focusable="false" />
 
-            android:inputType="date"
-            android:layout_marginTop="8dp" />
-
-
-        <!-- Botón Guardar -->
         <Button
             android:id="@+id/btnGuardarFactura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar Factura"
-            android:layout_marginTop="16dp" />
-
+            android:text="Guardar Factura" />
     </LinearLayout>
 </ScrollView>

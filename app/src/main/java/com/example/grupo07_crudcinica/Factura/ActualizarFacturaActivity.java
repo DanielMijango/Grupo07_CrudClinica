@@ -1,5 +1,6 @@
 package com.example.grupo07_crudcinica.Factura;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -21,51 +22,54 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.grupo07_crudcinica.ClinicaDbHelper;
 import com.example.grupo07_crudcinica.R;
 
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.grupo07_crudcinica.ClinicaDbHelper;
+import com.example.grupo07_crudcinica.R;
+
+import java.util.*;
+
 public class ActualizarFacturaActivity extends AppCompatActivity {
 
-    // Variables de los EditText y botón
-    private EditText edtIdFactura, edtNuevaFecha;
-    private Button btnActualizarFecha;
+    Spinner spinnerIdFactura;
+    EditText edtFecha;
+    Button btnActualizar;
+    ClinicaDbHelper dbHelper;
 
-    // Instancia del DbHelper para interactuar con la base de datos
-    private ClinicaDbHelper dbHelper;
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_actualizar_factura);
 
-        // Inicialización de la base de datos
+        spinnerIdFactura = findViewById(R.id.spinnerFacturaActualizar);
+        edtFecha = findViewById(R.id.edtFechaActualizarFactura);
+        btnActualizar = findViewById(R.id.btnActualizarFactura);
         dbHelper = new ClinicaDbHelper(this);
 
-        // Referencia a los EditText y Button
-        edtIdFactura = findViewById(R.id.edtIdFactura);
-        edtNuevaFecha = findViewById(R.id.edtNuevaFecha);
-        btnActualizarFecha = findViewById(R.id.btnActualizarFecha);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                dbHelper.consultarIds("FACTURA", "ID_FACTURA"));
+        spinnerIdFactura.setAdapter(adapter);
 
-        // Configuramos el evento del botón para realizar la actualización
-        btnActualizarFecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Obtener los valores ingresados
-                String idFactura = edtIdFactura.getText().toString().trim();
-                String nuevaFecha = edtNuevaFecha.getText().toString().trim();
+        edtFecha.setOnClickListener(v -> showDatePicker());
 
-                // Validación de campos
-                if (idFactura.isEmpty() || nuevaFecha.isEmpty()) {
-                    Toast.makeText(ActualizarFacturaActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Llamar a la función para actualizar la fecha de la factura
-                    boolean actualizacionExitosa = dbHelper.actualizarFechaFactura(idFactura, nuevaFecha);
-
-                    if (actualizacionExitosa) {
-                        Toast.makeText(ActualizarFacturaActivity.this, "Factura actualizada exitosamente", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(ActualizarFacturaActivity.this, "Error al actualizar la factura", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
+        btnActualizar.setOnClickListener(v -> {
+            String idFactura = spinnerIdFactura.getSelectedItem().toString();
+            String nuevaFecha = edtFecha.getText().toString();
+            boolean exito = dbHelper.actualizarFechaFactura(idFactura, nuevaFecha);
+            Toast.makeText(this, exito ? "Factura actualizada" : "Error al actualizar", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void showDatePicker() {
+        Calendar calendario = Calendar.getInstance();
+        new DatePickerDialog(this,
+                (view, year, month, day) -> edtFecha.setText(String.format("%04d-%02d-%02d", year, month + 1, day)),
+                calendario.get(Calendar.YEAR),
+                calendario.get(Calendar.MONTH),
+                calendario.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

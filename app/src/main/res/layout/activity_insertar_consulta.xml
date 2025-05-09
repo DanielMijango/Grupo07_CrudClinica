@@ -1,89 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- ID_CONSULTA -->
-        <EditText
-            android:id="@+id/edtIdConsulta"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="ID Consulta"
-            android:maxLength="4"
-            android:inputType="text"/>
+            android:text="Seleccione Doctor:" />
 
-        <!-- ID_FACTURA -->
-        <EditText
-            android:id="@+id/edtIdFactura"
+        <Spinner
+            android:id="@+id/spinnerDoctor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Factura"
-            android:maxLength="4"
-            android:inputType="text"/>
+            android:layout_height="wrap_content" />
 
-        <!-- ID_DOCTOR -->
-        <EditText
-            android:id="@+id/edtIdDoctor"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccione Paciente:" />
+
+        <Spinner
+            android:id="@+id/spinnerPaciente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Doctor"
-            android:maxLength="4"
-            android:inputType="text"/>
+            android:layout_height="wrap_content" />
 
-        <!-- ID_PACIENTE -->
-        <EditText
-            android:id="@+id/edtIdPaciente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ID Paciente"
-            android:maxLength="4"
-            android:inputType="text"/>
-
-        <!-- FECHA_CONSULTA -->
         <EditText
             android:id="@+id/edtFechaConsulta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de Consulta (YYYY-MM-DD)"
-            android:inputType="date"/>
+            android:hint="Fecha de consulta"
+            android:focusable="false" />
 
-        <!-- EMERGENCIA -->
         <EditText
             android:id="@+id/edtEmergencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emergencia"
-            android:inputType="text"/>
+            android:hint="Emergencia" />
 
-        <!-- CUOTA -->
         <EditText
             android:id="@+id/edtCuota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Cuota"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal" />
 
-        <!-- DIAGNOSTICO -->
         <EditText
             android:id="@+id/edtDiagnostico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Diagnóstico"
-            android:inputType="text"/>
+            android:hint="Diagnóstico" />
 
-        <!-- Botón Guardar -->
         <Button
             android:id="@+id/btnGuardarConsulta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar Consulta"
-            android:layout_marginTop="16dp"/>
+            android:text="Guardar Consulta" />
 
     </LinearLayout>
 </ScrollView>

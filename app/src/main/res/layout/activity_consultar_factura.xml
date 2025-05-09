@@ -1,47 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
-
+    android:layout_height="match_parent">
     <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <!-- Campo para ingresar la fecha -->
-        <EditText
-            android:id="@+id/edtBuscarFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ingrese Fecha (YYYY-MM-DD)"
-            android:inputType="date" />
-
-        <!-- Botón para realizar la búsqueda -->
-        <Button
-            android:id="@+id/btnBuscarFacturaPorFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Buscar Factura"
-            android:layout_marginTop="12dp" />
-
-        <!-- Resultado de la búsqueda -->
-        <TextView
-            android:id="@+id/txtResultadoFactura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resultado aparecerá aquí"
-            android:paddingTop="16dp"
-            android:textSize="16sp" />
-
-        <ListView
-            android:id="@+id/listaDetallesFactura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="1dp"
-            />
-
+        <TextView android:text="Seleccione ID de la Factura:" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinnerIdFactura" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/btnBuscarFactura" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Buscar"/>
+        <TextView android:id="@+id/txtResultadoFactura" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:paddingTop="16dp"/>
     </LinearLayout>
 </ScrollView>
