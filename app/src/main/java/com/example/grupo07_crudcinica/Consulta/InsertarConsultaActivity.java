@@ -66,21 +66,26 @@ public class InsertarConsultaActivity extends AppCompatActivity {
         spinnerPaciente.setAdapter(adapterPaciente);
 
         btnGuardar.setOnClickListener(view -> {
-            String idDoctor = spinnerDoctor.getSelectedItem().toString();
-            String idPaciente = spinnerPaciente.getSelectedItem().toString();
-            String fecha = edtFechaConsulta.getText().toString();
-            String emergencia = edtEmergencia.getText().toString();
-            double cuota = Double.parseDouble(edtCuota.getText().toString());
-            String diagnostico = edtDiagnostico.getText().toString();
 
-            long resultado = dbHelper.insertarConsulta(idDoctor, idPaciente, fecha, emergencia, cuota, diagnostico);
+           try {
+               String idDoctor = spinnerDoctor.getSelectedItem().toString();
+               String idPaciente = spinnerPaciente.getSelectedItem().toString();
+               String fecha = edtFechaConsulta.getText().toString();
+               String emergencia = edtEmergencia.getText().toString();
+               double cuota = Double.parseDouble(edtCuota.getText().toString());
+               String diagnostico = edtDiagnostico.getText().toString();
 
-            if (resultado != -1) {
-                Toast.makeText(this, "Consulta insertada correctamente", Toast.LENGTH_SHORT).show();
-                limpiarCampos();
-            } else {
-                Toast.makeText(this, "Error al insertar consulta", Toast.LENGTH_SHORT).show();
-            }
+               long resultado = dbHelper.insertarConsulta(idDoctor, idPaciente, fecha, emergencia, cuota, diagnostico);
+
+               if (resultado != -1) {
+                   Toast.makeText(this, "Consulta insertada correctamente", Toast.LENGTH_SHORT).show();
+                   limpiarCampos();
+               } else {
+                   Toast.makeText(this, "Error al insertar consulta", Toast.LENGTH_SHORT).show();
+               }
+           }catch (Exception e){
+               Toast.makeText(this, "Error al insertar consulta llene todos los campos", Toast.LENGTH_SHORT).show();
+           }
         });
     }
 

@@ -110,7 +110,7 @@ public class InsertarClinicaActivity extends AppCompatActivity {
                     Toast.makeText(this, "Error: ID ya existe", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
-                Toast.makeText(this, "Error al insertar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error al insertar debe seleccionar especialidad: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

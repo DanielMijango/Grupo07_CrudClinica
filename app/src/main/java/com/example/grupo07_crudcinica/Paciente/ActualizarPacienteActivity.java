@@ -59,6 +59,7 @@ public class ActualizarPacienteActivity extends AppCompatActivity {
         });
 
         btnActualizar.setOnClickListener(v -> {
+            try{
             String idPaciente = listaIdsPaciente.get(spinnerPaciente.getSelectedItemPosition());
             String nombre = etNombre.getText().toString();
             String apellido = etApellido.getText().toString();
@@ -70,6 +71,9 @@ public class ActualizarPacienteActivity extends AppCompatActivity {
                 Toast.makeText(this, "Paciente actualizado correctamente", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Error al actualizar paciente", Toast.LENGTH_SHORT).show();
+            }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al actualizar paciente llene todos los campos", Toast.LENGTH_SHORT).show();
             }
         });
     }

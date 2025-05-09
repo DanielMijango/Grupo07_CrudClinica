@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import com.example.grupo07_crudcinica.ClinicaDbHelper;
 
@@ -60,8 +62,7 @@ public class ConsultarDetalle extends AppCompatActivity {
 
             cursor.close();
         } else {
-            // Si el cursor está vacío, mostramos un mensaje adecuado o manejamos el caso
-           //Log.e("ConsultarDetalle", "No se encontraron detalles con medicamentos.");
+            Toast.makeText(this, "No hay detalles guardados", Toast.LENGTH_SHORT).show();
         }
 
         // Establecer el adaptador para el ListView

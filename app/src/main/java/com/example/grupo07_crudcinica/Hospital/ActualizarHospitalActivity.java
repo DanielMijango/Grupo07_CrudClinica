@@ -63,14 +63,18 @@ public class ActualizarHospitalActivity extends AppCompatActivity {
         });
 
         btnActualizar.setOnClickListener(v -> {
-            int hospitalId = (int) spinner.getSelectedItem();
-            String nombre = etNombre.getText().toString();
-            String direccion = etDireccion.getText().toString();
-            String telefono = etTelefono.getText().toString();
+            try {
+                int hospitalId = (int) spinner.getSelectedItem();
+                String nombre = etNombre.getText().toString();
+                String direccion = etDireccion.getText().toString();
+                String telefono = etTelefono.getText().toString();
 
-            int result = dbHelper.actualizarHospital(hospitalId, nombre, direccion, telefono);
+                int result = dbHelper.actualizarHospital(hospitalId, nombre, direccion, telefono);
 
-            Toast.makeText(this, result > 0 ? "Actualizado correctamente" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, result > 0 ? "Actualizado correctamente" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

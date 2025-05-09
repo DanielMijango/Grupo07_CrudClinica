@@ -59,6 +59,7 @@ public class ActualizarConsultaActivity extends AppCompatActivity {
         edtFecha.setOnClickListener(v -> showDatePicker());
 
         btnActualizar.setOnClickListener(v -> {
+            try{
             String idConsulta = spinnerConsultaId.getSelectedItem().toString();
             String idDoctor = spinnerDoctor.getSelectedItem().toString();
             String idPaciente = spinnerPaciente.getSelectedItem().toString();
@@ -69,6 +70,9 @@ public class ActualizarConsultaActivity extends AppCompatActivity {
 
             boolean actualizado = dbHelper.actualizarConsulta(idConsulta, idDoctor, idPaciente, fecha, emergencia, cuota, diagnostico);
             Toast.makeText(this, actualizado ? "Consulta actualizada" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al actualizar llene todos los campos", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

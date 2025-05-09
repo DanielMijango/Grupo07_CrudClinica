@@ -39,13 +39,17 @@ public class ActualizarAseguradoraActivity extends AppCompatActivity {
         cargarIdsAseguradora();
 
         btnActualizar.setOnClickListener(v -> {
-            String idSeleccionado = spinnerIdAseguradora.getSelectedItem().toString();
-            String nuevoNombre = etNombre.getText().toString();
+            try {
+                String idSeleccionado = spinnerIdAseguradora.getSelectedItem().toString();
+                String nuevoNombre = etNombre.getText().toString();
 
-            if (dbHelper.actualizarAseguradora(idSeleccionado, nuevoNombre)) {
-                Toast.makeText(this, "Aseguradora actualizada correctamente", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_SHORT).show();
+                if (dbHelper.actualizarAseguradora(idSeleccionado, nuevoNombre)) {
+                    Toast.makeText(this, "Aseguradora actualizada correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }
         });
     }

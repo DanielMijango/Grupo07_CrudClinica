@@ -86,9 +86,12 @@ public class InsertarFacturaActivity extends AppCompatActivity {
     }
 
     private void insertarFactura() {
+
+        try{
         String idFactura = generarIdFactura();
         String idConsulta = spinnerConsulta.getSelectedItem().toString();
         String fechaFactura = edtFechaFactura.getText().toString().trim();
+
 
         if (fechaFactura.isEmpty()) {
             Toast.makeText(this, "Por favor ingrese la fecha", Toast.LENGTH_SHORT).show();
@@ -102,6 +105,9 @@ public class InsertarFacturaActivity extends AppCompatActivity {
             edtFechaFactura.setText("");
         } else {
             Toast.makeText(this, "Error al guardar la factura", Toast.LENGTH_SHORT).show();
+        }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al insertar factura llene todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -121,4 +127,5 @@ public class InsertarFacturaActivity extends AppCompatActivity {
         cursor.close();
         return ids;
     }
+
 }

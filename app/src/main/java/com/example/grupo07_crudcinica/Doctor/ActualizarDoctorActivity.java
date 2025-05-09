@@ -64,13 +64,17 @@ public class ActualizarDoctorActivity extends AppCompatActivity {
         });
 
         btnActualizar.setOnClickListener(v -> {
-            String id = spinnerIds.getSelectedItem().toString();
-            String nuevoNombre = etNombre.getText().toString();
-            String nuevoApellido = etApellido.getText().toString();
+            try {
+                String id = spinnerIds.getSelectedItem().toString();
+                String nuevoNombre = etNombre.getText().toString();
+                String nuevoApellido = etApellido.getText().toString();
 
-            if (dbHelper.actualizarDoctor(id, nuevoNombre, nuevoApellido)) {
-                Toast.makeText(this, "Doctor actualizado", Toast.LENGTH_SHORT).show();
-            } else {
+                if (dbHelper.actualizarDoctor(id, nuevoNombre, nuevoApellido)) {
+                    Toast.makeText(this, "Doctor actualizado", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
                 Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }
         });

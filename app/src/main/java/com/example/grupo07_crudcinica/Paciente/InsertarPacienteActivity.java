@@ -22,6 +22,7 @@ public class InsertarPacienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insertar_paciente);
 
+
         etNombre = findViewById(R.id.etNombrePaciente);
         etApellido = findViewById(R.id.etApellidoPaciente);
         etDui = findViewById(R.id.etDuiPaciente);
@@ -32,6 +33,7 @@ public class InsertarPacienteActivity extends AppCompatActivity {
         cargarIdsAseguradoras();
 
         btnGuardar.setOnClickListener(v -> {
+            try{
             String nombre = etNombre.getText().toString();
             String apellido = etApellido.getText().toString();
             String dui = etDui.getText().toString();
@@ -47,7 +49,11 @@ public class InsertarPacienteActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Error al insertar", Toast.LENGTH_SHORT).show();
             }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al insertar paciente llene todos los campos", Toast.LENGTH_SHORT).show();
+            }
         });
+
     }
 
     private void cargarIdsAseguradoras() {

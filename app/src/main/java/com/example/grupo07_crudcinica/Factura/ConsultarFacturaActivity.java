@@ -58,17 +58,21 @@ public class ConsultarFacturaActivity extends AppCompatActivity {
         spinnerFacturaId.setAdapter(adapter);
 
         findViewById(R.id.btnBuscarFactura).setOnClickListener(view -> {
-            String id = spinnerFacturaId.getSelectedItem().toString();
-            Cursor cursor = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM FACTURA WHERE ID_FACTURA = ?", new String[]{id});
-            if (cursor.moveToFirst()) {
-                String resultado = "ID Factura: " + id +
-                        "\nID Consulta: " + cursor.getString(cursor.getColumnIndexOrThrow("ID_CONSULTA")) +
-                        "\nFecha: " + cursor.getString(cursor.getColumnIndexOrThrow("FECHA_FACTURA"));
-                txtResultado.setText(resultado);
-            } else {
-                txtResultado.setText("Factura no encontrada.");
+            try {
+                String id = spinnerFacturaId.getSelectedItem().toString();
+                Cursor cursor = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM FACTURA WHERE ID_FACTURA = ?", new String[]{id});
+                if (cursor.moveToFirst()) {
+                    String resultado = "ID Factura: " + id +
+                            "\nID Consulta: " + cursor.getString(cursor.getColumnIndexOrThrow("ID_CONSULTA")) +
+                            "\nFecha: " + cursor.getString(cursor.getColumnIndexOrThrow("FECHA_FACTURA"));
+                    txtResultado.setText(resultado);
+                } else {
+                    txtResultado.setText("Factura no encontrada.");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error no hay facturas registradas", Toast.LENGTH_SHORT).show();
             }
-            cursor.close();
         });
     }
 }

@@ -54,21 +54,25 @@ public class InsertarHospitalizacionActivity extends AppCompatActivity {
         editFechaAlta.setOnClickListener(v -> mostrarDatePicker(editFechaAlta));
 
         btnInsertar.setOnClickListener(v -> {
-            String fechaIngreso = editFechaIngreso.getText().toString();
-            String fechaAlta = editFechaAlta.getText().toString();
-            String idPacienteSeleccionado = spinnerPacientes.getSelectedItem().toString();
-            // idHospitalSeleccionado se obtiene pero no se usa, por compatibilidad
-            String idHospitalSeleccionado = spinnerHospitales.getSelectedItem().toString();
+           try {
+               String fechaIngreso = editFechaIngreso.getText().toString();
+               String fechaAlta = editFechaAlta.getText().toString();
+               String idPacienteSeleccionado = spinnerPacientes.getSelectedItem().toString();
+               // idHospitalSeleccionado se obtiene pero no se usa, por compatibilidad
+               String idHospitalSeleccionado = spinnerHospitales.getSelectedItem().toString();
 
-            long resultado = dbHelper.insertarHospitalizacion(idPacienteSeleccionado, fechaIngreso, fechaAlta);
+               long resultado = dbHelper.insertarHospitalizacion(idPacienteSeleccionado, fechaIngreso, fechaAlta);
 
-            if (resultado != -1) {
-                Toast.makeText(this, "Hospitalización insertada correctamente", Toast.LENGTH_SHORT).show();
-                editFechaIngreso.setText("");
-                editFechaAlta.setText("");
-            } else {
-                Toast.makeText(this, "Error al insertar hospitalización", Toast.LENGTH_SHORT).show();
-            }
+               if (resultado != -1) {
+                   Toast.makeText(this, "Hospitalización insertada correctamente", Toast.LENGTH_SHORT).show();
+                   editFechaIngreso.setText("");
+                   editFechaAlta.setText("");
+               } else {
+                   Toast.makeText(this, "Error al insertar hospitalización", Toast.LENGTH_SHORT).show();
+               }
+           }catch (Exception e) {
+            Toast.makeText(this, "Error al insertar hospitalizacion llene todos los campos", Toast.LENGTH_SHORT).show();
+        }
         });
     }
 

@@ -4,7 +4,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione ID de Doctor a actualizar"
+        android:textSize="16sp" />
     <Spinner
         android:id="@+id/spinnerIdActualizar"
         android:layout_width="match_parent"

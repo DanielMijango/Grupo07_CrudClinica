@@ -5,6 +5,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/textViewDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione id del doctor:"
+        android:paddingTop="16dp"/>
+
     <Spinner
         android:id="@+id/spinnerDoctorId"
         android:layout_width="match_parent"

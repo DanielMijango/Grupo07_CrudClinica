@@ -54,18 +54,22 @@ public class InsertarDoctorActivity extends AppCompatActivity {
         cargarEspecialidades();
 
         btnGuardar.setOnClickListener(v -> {
-            String nombre = etNombre.getText().toString();
-            String apellido = etApellido.getText().toString();
-            String seleccion = spinnerEspecialidad.getSelectedItem().toString();
-            String idEspecialidad = especialidadMap.get(seleccion);
+            try {
+                String nombre = etNombre.getText().toString();
+                String apellido = etApellido.getText().toString();
+                String seleccion = spinnerEspecialidad.getSelectedItem().toString();
+                String idEspecialidad = especialidadMap.get(seleccion);
 
-            long resultado = dbHelper.insertarDoctor(nombre, apellido, idEspecialidad);
-            if (resultado != -1) {
-                Toast.makeText(this, "Doctor insertado correctamente", Toast.LENGTH_SHORT).show();
-                etNombre.setText("");
-                etApellido.setText("");
-            } else {
-                Toast.makeText(this, "Error al insertar", Toast.LENGTH_SHORT).show();
+                long resultado = dbHelper.insertarDoctor(nombre, apellido, idEspecialidad);
+                if (resultado != -1) {
+                    Toast.makeText(this, "Doctor insertado correctamente", Toast.LENGTH_SHORT).show();
+                    etNombre.setText("");
+                    etApellido.setText("");
+                } else {
+                    Toast.makeText(this, "Error al insertar", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al insertar Doctor, debe llenar todos los camposs ", Toast.LENGTH_SHORT).show();
             }
         });
     }

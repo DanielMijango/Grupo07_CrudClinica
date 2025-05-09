@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,15 +37,19 @@ public class ConsultarAseguradoraActivity extends AppCompatActivity {
         cargarIdsAseguradora();
 
         btnBuscar.setOnClickListener(v -> {
-            String idSeleccionado = spinnerIdAseguradora.getSelectedItem().toString();
-            Cursor cursor = dbHelper.obtenerAseguradoraPorId(idSeleccionado);
+            try {
+                String idSeleccionado = spinnerIdAseguradora.getSelectedItem().toString();
+                Cursor cursor = dbHelper.obtenerAseguradoraPorId(idSeleccionado);
 
-            if (cursor.moveToFirst()) {
-                etNombre.setText(cursor.getString(1)); // NOMBRE_ASEGURADORA
-            } else {
-                etNombre.setText("No encontrada");
+                if (cursor.moveToFirst()) {
+                    etNombre.setText(cursor.getString(1)); // NOMBRE_ASEGURADORA
+                } else {
+                    etNombre.setText("No encontrada");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }
-            cursor.close();
         });
     }
 

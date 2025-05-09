@@ -74,6 +74,7 @@ public class InsertarDetalle extends AppCompatActivity {
         spinnerMedicamentos.setAdapter(adapter);
     }
     private void guardarDetalleFactura() {
+        try{
         String idFactura = edtIdFactura.getText().toString().trim();
         String montoStr = edtMontoDetalle.getText().toString().trim();
         String formaPago = edtFormaPago.getText().toString().trim();
@@ -98,7 +99,7 @@ public class InsertarDetalle extends AppCompatActivity {
 
 
 
-        try {
+
             double monto = Double.parseDouble(montoStr);
             String idMedicamento = medicamentoMap.get(nombreMedicamento); // Asegúrate de tener este mapa
 
@@ -123,6 +124,9 @@ public class InsertarDetalle extends AppCompatActivity {
         } catch (NumberFormatException e) {
             edtMontoDetalle.setError("Monto inválido");
             e.printStackTrace();
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Error al insertar llene todos los campos", Toast.LENGTH_SHORT).show();
         }
 
     }

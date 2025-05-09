@@ -18,6 +18,10 @@
             />
 
         <!-- Lista de Medicamentos -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medicamento:" />
         <Spinner
             android:id="@+id/spinnerMedicamentos"
             android:layout_width="match_parent"

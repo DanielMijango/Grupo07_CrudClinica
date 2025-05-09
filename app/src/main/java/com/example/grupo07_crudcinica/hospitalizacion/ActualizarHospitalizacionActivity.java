@@ -79,25 +79,31 @@ public class ActualizarHospitalizacionActivity extends AppCompatActivity {
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         editTextFechaIngreso.setOnClickListener(v -> mostrarDatePicker(editTextFechaIngreso));
         editTextFechaAlta.setOnClickListener(v -> mostrarDatePicker(editTextFechaAlta));
 
         btnActualizar.setOnClickListener(v -> {
-            String id = spinnerIdHospitalizacion.getSelectedItem().toString();
-            String paciente = spinnerPaciente.getSelectedItem().toString();
-            String ingreso = editTextFechaIngreso.getText().toString();
-            String alta = editTextFechaAlta.getText().toString();
+            try {
+                String id = spinnerIdHospitalizacion.getSelectedItem().toString();
+                String paciente = spinnerPaciente.getSelectedItem().toString();
+                String ingreso = editTextFechaIngreso.getText().toString();
+                String alta = editTextFechaAlta.getText().toString();
 
-            boolean resultado = dbHelper.actualizarHospitalizacion(id, paciente, ingreso, alta);
-            if (resultado) {
-                Toast.makeText(this, "Actualizado correctamente", Toast.LENGTH_SHORT).show();
-            } else {
+                boolean resultado = dbHelper.actualizarHospitalizacion(id, paciente, ingreso, alta);
+                if (resultado) {
+                    Toast.makeText(this, "Actualizado correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
                 Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void mostrarDatePicker(EditText campo) {
