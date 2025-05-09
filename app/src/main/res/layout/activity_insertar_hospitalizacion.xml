@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:text="Seleccionar ID Paciente"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Paciente"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinnerPacientes"
@@ -20,38 +22,43 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="Fecha de Ingreso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:text="Seleccionar Hospital"
+            android:textStyle="bold"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/spinnerHospitales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/editFechaIngreso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YYYY-MM-DD"
+            android:hint="Fecha de Ingreso (YYYY-MM-DD)"
             android:focusable="false"
-            android:inputType="none" />
-
-        <TextView
-            android:text="Fecha de Alta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:clickable="true"
+            android:inputType="none"
+            android:paddingTop="16dp" />
 
         <EditText
             android:id="@+id/editFechaAlta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YYYY-MM-DD"
+            android:hint="Fecha de Alta (YYYY-MM-DD)"
             android:focusable="false"
-            android:inputType="none" />
+            android:clickable="true"
+            android:inputType="none"
+            android:paddingTop="8dp" />
 
         <Button
             android:id="@+id/btnInsertarHospitalizacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Insertar Hospitalización"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 </ScrollView>

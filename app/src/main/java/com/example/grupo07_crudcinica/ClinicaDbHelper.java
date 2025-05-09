@@ -758,6 +758,24 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         int filas = db.delete("hospitalizacion", "ID_HOSPITALIZACION = ?", new String[]{id});
         return filas > 0;
     }
+
+
+    public List<String> obtenerTodosLosIdHospitales() {
+        List<String> listaIds = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT ID_HOSPITAL, NOMBRE FROM HOSPITAL", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Esto mostrará "1 - Hospital Nacional", etc.
+                String id = cursor.getString(0);
+                String nombre = cursor.getString(1);
+                listaIds.add(id + " - " + nombre);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listaIds;
+    }
     //-------------------------------------- CRUD ASEGURADORA --------------------------------
     public long insertarAseguradora(String idAseguradora, String nombre) {
         SQLiteDatabase db = this.getWritableDatabase();
