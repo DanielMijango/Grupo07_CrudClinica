@@ -98,9 +98,14 @@ public class InsertarClinicaActivity extends AppCompatActivity {
                 boolean insertado = clinicaDAO.insertarClinica(id, nombre, direccion, idDistrito);
 
                 if (insertado) {
-                    clinicaDAO.insertarClinicaEspecialidad(id, idEspecialidad);
+                    boolean relacionInsertada = clinicaDAO.insertarClinicaEspecialidad(id, idEspecialidad);
 
-                    Toast.makeText(this, "Clínica insertada correctamente", Toast.LENGTH_SHORT).show();
+                    if (relacionInsertada) {
+                        Toast.makeText(this, "Clínica insertada correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Clínica insertada, pero no se pudo asignar especialidad", Toast.LENGTH_LONG).show();
+                    }
+
                     edtId.setText("");
                     edtNombre.setText("");
                     edtDireccion.setText("");

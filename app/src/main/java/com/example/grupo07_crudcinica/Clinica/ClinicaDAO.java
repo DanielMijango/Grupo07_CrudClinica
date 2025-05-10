@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.grupo07_crudcinica.ClinicaDbHelper;
 
@@ -77,16 +78,67 @@ public class ClinicaDAO {
     }
 
     // Insertar relación clínica-especialidad
+
     public boolean insertarClinicaEspecialidad(int idClinica, String idEspecialidad) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues valores = new ContentValues();
-        valores.put("idClinica", idClinica);
-        valores.put("idEspecialidad", idEspecialidad);
+        boolean resultado = false;
 
-        long resultado = db.insert("Clinica_Especialidad", null, valores);
-        db.close();
-        return resultado != -1;
+        try {
+            // Verificar si ya existe la relación
+            Cursor cursor = db.rawQuery(
+                    "SELECT 1 FROM Clinica_Especialidad WHERE idClinica = ? AND ID_ESPECIALIDAD = ?",
+                    new String[]{String.valueOf(idClinica), idEspecialidad}
+            );
+
+            if (cursor.moveToFirst()) {
+                Log.w("INSERT_CLINICA_ESP", "Ya existe la relación: Clínica " + idClinica + " - Especialidad " + idEspecialidad);
+                cursor.close();
+                return false;
+            }
+            cursor.close();
+
+            // Verificar existencia de idClinica
+            Cursor cursorClinica = db.rawQuery(
+                    "SELECT 1 FROM Clinica WHERE idClinica = ?",
+                    new String[]{String.valueOf(idClinica)}
+            );
+            if (!cursorClinica.moveToFirst()) {
+                Log.e("INSERT_CLINICA_ESP", "ID Clínica no encontrado: " + idClinica);
+                cursorClinica.close();
+                return false;
+            }
+            cursorClinica.close();
+
+            // Verificar existencia de idEspecialidad
+            Cursor cursorEspecialidad = db.rawQuery(
+                    "SELECT 1 FROM ESPECIALIDAD WHERE ID_ESPECIALIDAD = ?",
+                    new String[]{idEspecialidad}
+            );
+            if (!cursorEspecialidad.moveToFirst()) {
+                Log.e("INSERT_CLINICA_ESP", "ID Especialidad no encontrado: " + idEspecialidad);
+                cursorEspecialidad.close();
+                return false;
+            }
+            cursorEspecialidad.close();
+
+            // Insertar la relación
+            ContentValues valores = new ContentValues();
+            valores.put("idClinica", idClinica);
+            valores.put("ID_ESPECIALIDAD", idEspecialidad); // ← importante: nombre de columna correcto
+
+            long insertResult = db.insertOrThrow("Clinica_Especialidad", null, valores);
+            resultado = insertResult != -1;
+            Log.d("INSERT_CLINICA_ESP", "Inserción exitosa: Clínica " + idClinica + " - Especialidad " + idEspecialidad);
+
+        } catch (Exception e) {
+            Log.e("INSERT_CLINICA_ESP", "Error al insertar relación", e);
+        } finally {
+            db.close();
+        }
+
+        return resultado;
     }
+
 
     // Consultar clínica por ID
     public Cursor consultarClinicaPorId(int id) {

@@ -82,10 +82,10 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE Clinica_Especialidad (" +
                 "idClinica INTEGER NOT NULL, " +
-                "idEspecialidad TEXT NOT NULL, " +
-                "PRIMARY KEY (idClinica, idEspecialidad), " +
+                "ID_ESPECIALIDAD TEXT NOT NULL, " + // <-- aquí
+                "PRIMARY KEY (idClinica, ID_ESPECIALIDAD), " +
                 "FOREIGN KEY (idClinica) REFERENCES Clinica(idClinica), " +
-                "FOREIGN KEY (idEspecialidad) REFERENCES Especialidad(idEspecialidad));");
+                "FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDAD(ID_ESPECIALIDAD));");
 
         db.execSQL("CREATE TABLE MEDICAMENTO (" +
                 "ID_MEDICAMENTO TEXT PRIMARY KEY," +
