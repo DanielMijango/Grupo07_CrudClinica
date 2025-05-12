@@ -42,7 +42,6 @@ public class InsertarFacturaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insertar_factura);
 
         spinnerConsulta = findViewById(R.id.spinnerConsultaFactura);
-        spinnerDetalle = findViewById(R.id.spinnerDetalleFactura);
         edtFechaFactura = findViewById(R.id.edtFechaFactura);
         btnGuardarFactura = findViewById(R.id.btnGuardarFactura);
 
@@ -62,8 +61,6 @@ public class InsertarFacturaActivity extends AppCompatActivity {
         adapterDetalle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerConsulta.setAdapter(adapterConsulta);
-        spinnerDetalle.setAdapter(adapterDetalle);
-
         btnGuardarFactura.setOnClickListener(v -> insertarFactura());
     }
 
@@ -88,7 +85,7 @@ public class InsertarFacturaActivity extends AppCompatActivity {
     private void insertarFactura() {
 
         try{
-        String idFactura = generarIdFactura();
+
         String idConsulta = spinnerConsulta.getSelectedItem().toString();
         String fechaFactura = edtFechaFactura.getText().toString().trim();
 
@@ -98,7 +95,7 @@ public class InsertarFacturaActivity extends AppCompatActivity {
             return;
         }
 
-        boolean insertado = dbHelper.insertarFactura(idFactura, idConsulta, fechaFactura);
+        boolean insertado = dbHelper.insertarFactura( idConsulta, fechaFactura);
 
         if (insertado) {
             Toast.makeText(this, "Factura guardada correctamente", Toast.LENGTH_SHORT).show();
@@ -111,10 +108,6 @@ public class InsertarFacturaActivity extends AppCompatActivity {
         }
     }
 
-    private String generarIdFactura() {
-        int numero = (int)(Math.random() * 900 + 100);
-        return "F" + numero;
-    }
 
     private List<String> getIdsDetalleFactura() {
         List<String> ids = new ArrayList<>();

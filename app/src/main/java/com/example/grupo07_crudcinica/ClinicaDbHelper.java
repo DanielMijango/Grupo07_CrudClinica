@@ -305,20 +305,48 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         return ids;
     }
 
-
-
-    public boolean insertarFactura(String idFactura, String idConsulta, String fechaFactura) {
+    public boolean insertarFactura(String idConsulta, String fechaFactura) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
+        db.beginTransaction(); // Iniciar transacción
 
-        values.put("ID_FACTURA", generarId("FAC"));
-        values.put("ID_CONSULTA", idConsulta);
-        values.put("FECHA_FACTURA", fechaFactura); // Asegúrate de que sea un string en formato "yyyy-MM-dd"
+        try {
+            String idFactura = generarId("FAC");
 
-        long resultado = db.insert("FACTURA", null, values);
+            ContentValues valuesFactura = new ContentValues();
+            valuesFactura.put("ID_FACTURA", idFactura);
+            valuesFactura.put("ID_CONSULTA", idConsulta);
+            valuesFactura.put("FECHA_FACTURA", fechaFactura);
 
-        return resultado != -1; // true si se insertó correctamente
+            long resultadoFactura = db.insert("FACTURA", null, valuesFactura);
+
+            if (resultadoFactura == -1) {
+                return false; // Inserción fallida
+            }
+
+            ContentValues valoresConsulta = new ContentValues();
+            valoresConsulta.put("ID_FACTURA", idFactura);
+
+            int filasAfectadas = db.update(
+                    "CONSULTA",
+                    valoresConsulta,
+                    "ID_CONSULTA = ?",
+                    new String[]{idConsulta}
+            );
+
+            if (filasAfectadas <= 0) {
+                return false; // Actualización fallida
+            }
+
+            db.setTransactionSuccessful(); // Marca la transacción como exitosa
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(); // Opcional: log para debugging
+            return false;
+        } finally {
+            db.endTransaction(); // Finaliza la transacción (commit o rollback)
+        }
     }
+
     public List<String> consultarFacturasConDetallesPorFecha(String fecha) {
         List<String> resultados = new ArrayList<>();
 
