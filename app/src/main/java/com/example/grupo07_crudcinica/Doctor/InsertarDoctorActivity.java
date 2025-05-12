@@ -61,6 +61,7 @@ public class InsertarDoctorActivity extends AppCompatActivity {
                 String idEspecialidad = especialidadMap.get(seleccion);
 
                 long resultado = dbHelper.insertarDoctor(nombre, apellido, idEspecialidad);
+
                 if (resultado != -1) {
                     Toast.makeText(this, "Doctor insertado correctamente", Toast.LENGTH_SHORT).show();
                     etNombre.setText("");

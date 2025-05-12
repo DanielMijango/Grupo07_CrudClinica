@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ClinicaDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clinica.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private final Context context;
 
     public ClinicaDbHelper(Context context) {
@@ -37,17 +37,18 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
                 "id_departamento INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL);");
 
-        db.execSQL("CREATE TABLE distrito (" +
-                "id_distrito INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE municipio (" +
+                "id_municipio INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
                 "id_departamento INTEGER," +
                 "FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento));");
 
-        db.execSQL("CREATE TABLE municipio (" +
-                "id_municipio INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE distrito (" +
+                "id_distrito INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
-                "id_distrito INTEGER," +
-                "FOREIGN KEY (id_distrito) REFERENCES distrito(id_distrito));");
+                "id_municipio INTEGER," +
+                "FOREIGN KEY (id_municipio) REFERENCES municipio(id_municipio));");
+
 
         db.execSQL("CREATE TABLE Clinica (" +
                 "idClinica INTEGER PRIMARY KEY," +
@@ -166,6 +167,10 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS DETALLE_FACTURA");
         db.execSQL("DROP TABLE IF EXISTS TRATAMIENTO;");
         db.execSQL("DROP TABLE IF EXISTS FACTURA;");
+        db.execSQL("DROP TABLE IF EXISTS HOSPITALIZACION;");
+        db.execSQL("DROP TABLE IF EXISTS HOSPITAL;");
+        db.execSQL("DROP TABLE IF EXISTS CONSULTA;");
+        db.execSQL("DROP TABLE IF EXISTS ASEGURADORA;");
 
         onCreate(db);
     }
@@ -950,30 +955,33 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
                 JSONObject departamentoObj = departamentosArray.getJSONObject(i);
                 String nombreDepartamento = departamentoObj.getString("nombre");
 
+                // Insertar departamento
                 ContentValues deptoValues = new ContentValues();
                 deptoValues.put("nombre", nombreDepartamento);
                 long departamentoId = db.insert("departamento", null, deptoValues);
 
-                JSONArray distritosArray = departamentoObj.getJSONArray("municipios");
+                JSONArray municipiosArray = departamentoObj.getJSONArray("municipios");
 
-                for (int j = 0; j < distritosArray.length(); j++) {
-                    JSONObject distritoObj = distritosArray.getJSONObject(j);
-                    String nombreDistrito = distritoObj.getString("nombre");
+                for (int j = 0; j < municipiosArray.length(); j++) {
+                    JSONObject municipioObj = municipiosArray.getJSONObject(j);
+                    String nombreMunicipio = municipioObj.getString("nombre");
 
-                    ContentValues distritoValues = new ContentValues();
-                    distritoValues.put("nombre", nombreDistrito);
-                    distritoValues.put("id_departamento", departamentoId);
-                    long distritoId = db.insert("distrito", null, distritoValues);
+                    // Insertar municipio
+                    ContentValues municipioValues = new ContentValues();
+                    municipioValues.put("nombre", nombreMunicipio);
+                    municipioValues.put("id_departamento", departamentoId);
+                    long municipioId = db.insert("municipio", null, municipioValues);
 
-                    JSONArray municipiosArray = distritoObj.getJSONArray("distritos");
+                    // Insertar distritos dentro del municipio
+                    JSONArray distritosArray = municipioObj.getJSONArray("distritos");
+                    for (int k = 0; k < distritosArray.length(); k++) {
+                        JSONObject distritoObj = distritosArray.getJSONObject(k);
+                        String nombreDistrito = distritoObj.getString("nombre");
 
-                    for (int k = 0; k < municipiosArray.length(); k++) {
-                        String nombreMunicipio = municipiosArray.getString(k);
-
-                        ContentValues municipioValues = new ContentValues();
-                        municipioValues.put("nombre", nombreMunicipio);
-                        municipioValues.put("id_distrito", distritoId);
-                        db.insert("municipio", null, municipioValues);
+                        ContentValues distritoValues = new ContentValues();
+                        distritoValues.put("nombre", nombreDistrito);
+                        distritoValues.put("id_municipio", municipioId);
+                        db.insert("distrito", null, distritoValues);
                     }
                 }
             }
@@ -981,4 +989,5 @@ public class ClinicaDbHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
+
 }
