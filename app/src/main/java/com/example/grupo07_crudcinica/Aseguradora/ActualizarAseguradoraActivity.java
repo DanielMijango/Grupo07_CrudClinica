@@ -39,6 +39,10 @@ public class ActualizarAseguradoraActivity extends AppCompatActivity {
         cargarIdsAseguradora();
 
         btnActualizar.setOnClickListener(v -> {
+            if (etNombre.getText().toString().trim().isEmpty()) {
+                etNombre.setError("Ingrese el nuevo nombre");
+                return;
+            }
             try {
                 String idSeleccionado = spinnerIdAseguradora.getSelectedItem().toString();
                 String nuevoNombre = etNombre.getText().toString();

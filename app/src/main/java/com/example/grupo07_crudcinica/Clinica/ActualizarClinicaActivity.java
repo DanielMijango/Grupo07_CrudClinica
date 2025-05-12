@@ -29,6 +29,14 @@ public class ActualizarClinicaActivity extends AppCompatActivity {
         clinicaDAO = new ClinicaDAO(this);
 
         btnActualizar.setOnClickListener(v -> {
+            if (edtNuevoNombre.getText().toString().trim().isEmpty()) {
+                edtNuevoNombre.setError("Ingrese el apellido");
+                return;
+            }
+            if (edtNuevaDireccion.getText().toString().trim().isEmpty()) {
+                edtNuevaDireccion.setError("Ingrese el apellido");
+                return;
+            }
             try {
                 int id = Integer.parseInt(edtId.getText().toString());
                 String nombre = edtNuevoNombre.getText().toString();

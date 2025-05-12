@@ -54,11 +54,23 @@ public class InsertarDoctorActivity extends AppCompatActivity {
         cargarEspecialidades();
 
         btnGuardar.setOnClickListener(v -> {
+
+            if (etNombre.getText().toString().trim().isEmpty()) {
+                etNombre.setError("Ingrese el nombre del doctor");
+                return;
+            }
+
+            if (etApellido.getText().toString().trim().isEmpty()) {
+                etApellido.setError("Ingrese el apellido");
+                return;
+            }
+
             try {
                 String nombre = etNombre.getText().toString();
                 String apellido = etApellido.getText().toString();
                 String seleccion = spinnerEspecialidad.getSelectedItem().toString();
                 String idEspecialidad = especialidadMap.get(seleccion);
+
 
                 long resultado = dbHelper.insertarDoctor(nombre, apellido, idEspecialidad);
 

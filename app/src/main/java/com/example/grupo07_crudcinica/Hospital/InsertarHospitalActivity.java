@@ -42,17 +42,24 @@ public class InsertarHospitalActivity extends AppCompatActivity {
                 String direccion = etDireccion.getText().toString();
                 String telefono = etTelefono.getText().toString();
 
-                long resultado = dbHelper.insertarHospital(nombre, direccion, telefono);
+                if(nombre!=null && direccion!=null && telefono!= null) {
+                    long resultado = dbHelper.insertarHospital(nombre, direccion, telefono);
 
-                if (resultado != -1) {
-                    Toast.makeText(getApplicationContext(), "Hospital insertado", Toast.LENGTH_SHORT).show();
-                    etNombre.setText("");
-                    etDireccion.setText("");
-                    etTelefono.setText("");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error al insertar", Toast.LENGTH_SHORT).show();
+
+                    if (resultado != -1) {
+                        Toast.makeText(getApplicationContext(), "Hospital insertado", Toast.LENGTH_SHORT).show();
+                        etNombre.setText("");
+                        etDireccion.setText("");
+                        etTelefono.setText("");
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error al insertar", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
     }
 }

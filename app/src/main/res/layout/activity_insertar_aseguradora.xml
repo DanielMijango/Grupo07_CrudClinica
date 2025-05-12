@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:hint="ID Aseguradora"
         android:maxLength="4"
-        android:inputType="text"/>
+        android:inputType="number"/>
 
     <EditText
         android:id="@+id/etNombre"

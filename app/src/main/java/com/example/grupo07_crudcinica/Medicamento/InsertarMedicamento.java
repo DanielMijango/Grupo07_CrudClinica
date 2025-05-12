@@ -84,7 +84,7 @@ public class InsertarMedicamento extends AppCompatActivity {
             String nombre = edtNombre.getText().toString().trim();
             String descripcion = edtDescripcion.getText().toString().trim();
             double precio = Double.parseDouble(edtPrecio.getText().toString().trim());
-            int stock = edtStock.getText().toString().isEmpty() ? 0 :
+            int stock = edtStock.getText().toString().isEmpty() ? 1 :
                     Integer.parseInt(edtStock.getText().toString().trim());
 
             // Convertir fecha de dd/MM/yyyy a yyyy-MM-dd para la base de datos

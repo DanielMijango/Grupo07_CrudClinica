@@ -59,6 +59,18 @@ public class ActualizarConsultaActivity extends AppCompatActivity {
         edtFecha.setOnClickListener(v -> showDatePicker());
 
         btnActualizar.setOnClickListener(v -> {
+            if (edtFecha.getText().toString().trim().isEmpty()) {
+                edtFecha.setError("Ingrese la fecha");
+                return;
+            }
+            if (edtEmergencia.getText().toString().trim().isEmpty()) {
+                edtEmergencia.setError("Ingrese la emergencia");
+                return;
+            }
+            if (edtCuota.getText().toString().trim().isEmpty()) {
+                edtCuota.setError("Ingrese la cuota");
+                return;
+            }
             try{
             String idConsulta = spinnerConsultaId.getSelectedItem().toString();
             String idDoctor = spinnerDoctor.getSelectedItem().toString();

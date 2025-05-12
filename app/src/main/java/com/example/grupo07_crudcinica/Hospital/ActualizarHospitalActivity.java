@@ -69,9 +69,14 @@ public class ActualizarHospitalActivity extends AppCompatActivity {
                 String direccion = etDireccion.getText().toString();
                 String telefono = etTelefono.getText().toString();
 
-                int result = dbHelper.actualizarHospital(hospitalId, nombre, direccion, telefono);
+                if(nombre!=null && direccion!=null && telefono!= null) {
+                    int result = dbHelper.actualizarHospital(hospitalId, nombre, direccion, telefono);
 
-                Toast.makeText(this, result > 0 ? "Actualizado correctamente" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, result > 0 ? "Actualizado correctamente" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this, "Llena todo los campos", Toast.LENGTH_SHORT).show();
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }

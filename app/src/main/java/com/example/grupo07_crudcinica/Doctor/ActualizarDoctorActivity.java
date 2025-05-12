@@ -64,6 +64,16 @@ public class ActualizarDoctorActivity extends AppCompatActivity {
         });
 
         btnActualizar.setOnClickListener(v -> {
+            if (etNombre.getText().toString().trim().isEmpty()) {
+                etNombre.setError("Ingrese el nombre del doctor");
+                return;
+            }
+
+            if (etApellido.getText().toString().trim().isEmpty()) {
+                etApellido.setError("Ingrese el apellido");
+                return;
+            }
+
             try {
                 String id = spinnerIds.getSelectedItem().toString();
                 String nuevoNombre = etNombre.getText().toString();

@@ -60,8 +60,14 @@ public class ActualizarFacturaActivity extends AppCompatActivity {
             try {
                 String idFactura = spinnerIdFactura.getSelectedItem().toString();
                 String nuevaFecha = edtFecha.getText().toString();
-                boolean exito = dbHelper.actualizarFechaFactura(idFactura, nuevaFecha);
-                Toast.makeText(this, exito ? "Factura actualizada" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+                if(nuevaFecha!=null){
+                    boolean exito = dbHelper.actualizarFechaFactura(idFactura, nuevaFecha);
+                    Toast.makeText(this, exito ? "Factura actualizada" : "Error al actualizar", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText( this,"Ingrese la fecha", Toast.LENGTH_SHORT).show();
+                }
+
             } catch (Exception e) {
                 Toast.makeText(this, "Error al actualizar, llene todos los campos", Toast.LENGTH_SHORT).show();
             }

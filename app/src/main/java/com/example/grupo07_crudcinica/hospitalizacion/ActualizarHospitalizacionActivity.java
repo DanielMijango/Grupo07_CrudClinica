@@ -87,6 +87,15 @@ public class ActualizarHospitalizacionActivity extends AppCompatActivity {
         editTextFechaAlta.setOnClickListener(v -> mostrarDatePicker(editTextFechaAlta));
 
         btnActualizar.setOnClickListener(v -> {
+            if (editTextFechaIngreso.getText().toString().trim().isEmpty()) {
+                editTextFechaIngreso.setError("Ingrese la fecha");
+                return;
+            }
+
+            if (editTextFechaAlta.getText().toString().trim().isEmpty()) {
+                editTextFechaAlta.setError("Ingrese la fecha");
+                return;
+            }
             try {
                 String id = spinnerIdHospitalizacion.getSelectedItem().toString();
                 String paciente = spinnerPaciente.getSelectedItem().toString();

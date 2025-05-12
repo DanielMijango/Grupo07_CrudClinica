@@ -54,6 +54,16 @@ public class InsertarHospitalizacionActivity extends AppCompatActivity {
         editFechaAlta.setOnClickListener(v -> mostrarDatePicker(editFechaAlta));
 
         btnInsertar.setOnClickListener(v -> {
+            if (editFechaAlta.getText().toString().trim().isEmpty()) {
+                editFechaAlta.setError("Ingrese la fecha");
+                return;
+            }
+
+            if (editFechaAlta.getText().toString().trim().isEmpty()) {
+                editFechaAlta.setError("Ingrese la fecha");
+                return;
+            }
+
            try {
                String fechaIngreso = editFechaIngreso.getText().toString();
                String fechaAlta = editFechaAlta.getText().toString();

@@ -33,6 +33,20 @@ public class InsertarPacienteActivity extends AppCompatActivity {
         cargarIdsAseguradoras();
 
         btnGuardar.setOnClickListener(v -> {
+            if (etNombre.getText().toString().trim().isEmpty()) {
+                etNombre.setError("Ingrese el nombre del paciente");
+                return;
+            }
+
+            if (etApellido.getText().toString().trim().isEmpty()) {
+                etApellido.setError("Ingrese el apellido");
+                return;
+            }
+            if (etDui.getText().toString().trim().isEmpty()) {
+                etDui.setError("Ingrese el nombre de la clinica");
+                return;
+            }
+
             try{
             String nombre = etNombre.getText().toString();
             String apellido = etApellido.getText().toString();

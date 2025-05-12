@@ -84,6 +84,21 @@ public class InsertarClinicaActivity extends AppCompatActivity {
         spinnerEspecialidad.setAdapter(adapterEspecialidades);
 
         btnInsertar.setOnClickListener(v -> {
+            if (edtNombre.getText().toString().trim().isEmpty()) {
+                edtNombre.setError("Ingrese el nombre de la clinica");
+                return;
+            }
+
+            if (edtDireccion.getText().toString().trim().isEmpty()) {
+                edtDireccion.setError("Ingrese la direccion (calle)");
+                return;
+            }
+            if (edtId.getText().toString().trim().isEmpty()) {
+                edtId.setError("El ID es necesario");
+                return;
+            }
+
+
             try {
                 int id = Integer.parseInt(edtId.getText().toString());
                 String nombre = edtNombre.getText().toString();

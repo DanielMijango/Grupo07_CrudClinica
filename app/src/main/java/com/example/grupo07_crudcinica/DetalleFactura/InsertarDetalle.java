@@ -97,9 +97,6 @@ public class InsertarDetalle extends AppCompatActivity {
             return;
         }
 
-
-
-
             double monto = Double.parseDouble(montoStr);
             String idMedicamento = medicamentoMap.get(nombreMedicamento); // Asegúrate de tener este mapa
 

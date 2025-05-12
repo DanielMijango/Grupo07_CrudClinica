@@ -66,6 +66,22 @@ public class InsertarConsultaActivity extends AppCompatActivity {
         spinnerPaciente.setAdapter(adapterPaciente);
 
         btnGuardar.setOnClickListener(view -> {
+            if (edtFechaConsulta.getText().toString().trim().isEmpty()) {
+                edtFechaConsulta.setError("Ingrese la fecha");
+                return;
+            }
+            if (edtEmergencia.getText().toString().trim().isEmpty()) {
+                edtEmergencia.setError("Ingrese la emergencia");
+                return;
+            }
+            if (edtCuota.getText().toString().trim().isEmpty()) {
+                edtCuota.setError("Ingrese la cuota");
+                return;
+            }
+            if (edtDiagnostico.getText().toString().trim().isEmpty()) {
+                edtDiagnostico.setError("Ingrese el diagnostico");
+                return;
+            }
 
            try {
                String idDoctor = spinnerDoctor.getSelectedItem().toString();

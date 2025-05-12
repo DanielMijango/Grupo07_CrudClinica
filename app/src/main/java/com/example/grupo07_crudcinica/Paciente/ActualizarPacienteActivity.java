@@ -59,6 +59,19 @@ public class ActualizarPacienteActivity extends AppCompatActivity {
         });
 
         btnActualizar.setOnClickListener(v -> {
+            if (etNombre.getText().toString().trim().isEmpty()) {
+                etNombre.setError("Ingrese el nombre del paciente");
+                return;
+            }
+
+            if (etApellido.getText().toString().trim().isEmpty()) {
+                etApellido.setError("Ingrese el apellido");
+                return;
+            }
+            if (etDui.getText().toString().trim().isEmpty()) {
+                etDui.setError("Ingrese el nombre de la clinica");
+                return;
+            }
             try{
             String idPaciente = listaIdsPaciente.get(spinnerPaciente.getSelectedItemPosition());
             String nombre = etNombre.getText().toString();
